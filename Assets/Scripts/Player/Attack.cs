@@ -11,13 +11,18 @@ public class Attack : MonoBehaviour
     float projectileForce;
 
     Transform playerTransform;
+    Size sizeController;
 
     bool canAttack = true;
     float attackCooldown = 0.5f;
 
-    void Start()
+    public delegate void AttackEvent();
+    public event AttackEvent AttackEventInstance;
+
+    void Awake()
     {
-        playerTransform = GameObject.Find("Bubble").transform;
+        playerTransform = GetComponent<Transform>();
+        sizeController = GetComponent<Size>();
     }
 
     void OnAttack(InputValue inputValue)
@@ -25,6 +30,7 @@ public class Attack : MonoBehaviour
         Vector2 normalizedInput = inputValue.Get<Vector2>().normalized;
 
         if (normalizedInput == Vector2.zero) { return; }
+        if (sizeController.IsMinSize) { return; }
         if (!canAttack) { return; }
 
         Execute(normalizedInput);
@@ -32,6 +38,8 @@ public class Attack : MonoBehaviour
 
     void Execute(Vector2 direction)
     {
+        AttackEventInstance?.Invoke();
+
         Rigidbody2D p = Instantiate(projectile, playerTransform.position, projectile.transform.rotation);
         p.AddForce(direction * projectileForce);
 
