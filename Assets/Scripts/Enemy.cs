@@ -14,20 +14,21 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     float timeTrigger = 3f;
 
-    private Rigidbody2D myRigidbody;
+    private Rigidbody2D rb;
 
     // Use this for initialization
     void Start()
     {
         thePlayer = FindFirstObjectByType<Controller>();
-        myRigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
+
+
+        RestoreSpeed();
     }
 
     // Update is called once per frame
     void Update()
     {
-        myRigidbody.linearVelocity = new Vector3(myRigidbody.transform.localScale.x * speed, myRigidbody.linearVelocity.y, 0f);
-
         turnTimer += Time.deltaTime;
 
         if (turnTimer >= timeTrigger)
@@ -41,8 +42,8 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Projectile"))
         {
-            Instantiate(death, gameObject.transform.position, gameObject.transform.rotation);
-            Destroy(gameObject);
+            TurnAround();
+            rb.linearVelocity = Vector3.zero;
         }
 
         if (collision.gameObject.CompareTag("Player"))
@@ -53,13 +54,12 @@ public class Enemy : MonoBehaviour
 
     void TurnAround()
     {
-        if (transform.localScale.x > 0)
-        {
-            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        }
-        else
-        {
-            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        }
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        rb.linearVelocity = new Vector3(rb.transform.localScale.x * speed, rb.linearVelocity.y, 0f);
+    }
+
+    void RestoreSpeed()
+    {
+        rb.linearVelocity = new Vector3(rb.transform.localScale.x * speed, rb.linearVelocity.y, 0f);
     }
 }
