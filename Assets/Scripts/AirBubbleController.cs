@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class AirBubbleController : MonoBehaviour
 {
-    public delegate void CollectionEvent();
-    public static event CollectionEvent CollectedAirBubble;
-
-    public static void EmitCollectionEvent()
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        CollectedAirBubble.Invoke();
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameController.EmitCollisionEvent(GameController.CollisionType.AirBubble);
+        }
     }
 }

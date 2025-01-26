@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class AirBubbleInstance : MonoBehaviour
+public class HazardController : MonoBehaviour
 {
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            AirBubbleController.EmitCollectionEvent();
+            GameController.EmitCollisionEvent(GameController.CollisionType.Hazard);
         }
     }
 }

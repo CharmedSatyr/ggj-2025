@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 5965095241468110591}
   - component: {fileID: 8399051546778958244}
   - component: {fileID: 898680177194017198}
-  - component: {fileID: -3963294681012283310}
+  - component: {fileID: 2625160123119023987}
+  - component: {fileID: 7924201920815529813}
   - component: {fileID: 2817271739742903354}
   m_Layer: 0
   m_Name: Air Bubble
@@ -126,7 +127,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &-3963294681012283310
+--- !u!114 &2625160123119023987
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,7 +136,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4033116465021783015}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7831c877f6ce0406187e7f5598d933ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 6893f60837e2a4c67b636a08ac2a023c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7924201920815529813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4033116465021783015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6893f60837e2a4c67b636a08ac2a023c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2817271739742903354

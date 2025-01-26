@@ -28,13 +28,13 @@ public class Size : MonoBehaviour
 
     void OnEnable()
     {
-        AirBubbleController.CollectedAirBubble += Grow;
+        GameController.CollectedAirBubble += Grow;
         attackController.AttackEventInstance += Shrink;
     }
 
     void OnDisable()
     {
-        AirBubbleController.CollectedAirBubble -= Grow;
+        GameController.CollectedAirBubble -= Grow;
         attackController.AttackEventInstance -= Shrink;
     }
 
