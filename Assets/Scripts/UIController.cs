@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] float backgroundFadeDuration = 2f;
+    [SerializeField] float backgroundFadeDuration = 1f;
     [SerializeField] float textAppearDuration = 3f;
-
+    [SerializeField] float secondsToReset = 10f;
 
     TextMeshProUGUI youPopped;
     Image background;
@@ -32,6 +32,21 @@ public class UIController : MonoBehaviour
     void ShowDeathUI()
     {
         StartCoroutine(FadeIn());
+        StartCoroutine(Reset());
+    }
+
+    IEnumerator Reset()
+    {
+        yield return new WaitForSeconds(secondsToReset);
+
+        Color textColor = youPopped.color;
+        Color bgColor = background.color;
+
+        textColor.a = 0f;
+        bgColor.a = 0f;
+
+        youPopped.color = textColor;
+        background.color = textColor;
     }
 
     IEnumerator FadeIn()
@@ -54,11 +69,21 @@ public class UIController : MonoBehaviour
             float bgAlpha = timer / backgroundFadeDuration;
             bgColor.a = Mathf.Lerp(0f, 1f, bgAlpha);
 
+            background.color = bgColor;
+
+            yield return null;
+        }
+
+        timer = 0f;
+
+        while (timer < textAppearDuration)
+        {
+            timer += Time.deltaTime;
+
             float textAlpha = timer / textAppearDuration;
             textColor.a = Mathf.Lerp(0f, 1f, textAlpha);
 
             youPopped.color = textColor;
-            background.color = bgColor;
 
             yield return null;
         }

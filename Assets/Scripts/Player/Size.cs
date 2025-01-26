@@ -20,22 +20,37 @@ public class Size : MonoBehaviour
     public bool IsMinSize { get; private set; } = false;
     public bool IsMaxSize { get; private set; } = false;
 
+    Vector3 originalSize;
+
     void Awake()
     {
         attackController = GetComponent<Attack>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    void Start()
+    {
+        originalSize = GetComponent<Transform>().localScale;
+    }
+
     void OnEnable()
     {
         GameController.CollectedAirBubble += Grow;
         attackController.AttackEventInstance += Shrink;
+        Player.Controller.PlayerDeathInstance += Reset;
     }
 
     void OnDisable()
     {
         GameController.CollectedAirBubble -= Grow;
         attackController.AttackEventInstance -= Shrink;
+        Player.Controller.PlayerDeathInstance -= Reset;
+
+    }
+
+    void Reset()
+    {
+        spriteRenderer.transform.localScale = originalSize;
     }
 
     void Grow()

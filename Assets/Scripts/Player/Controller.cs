@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Player
@@ -22,7 +23,18 @@ namespace Player
         {
             PlayerDeathInstance.Invoke();
 
-            gameObject.SetActive(false);
+            StartCoroutine(Reset());
+
+            GetComponent<SpriteRenderer>().enabled = false;
+        }
+
+        IEnumerator Reset()
+        {
+            yield return new WaitForSeconds(2);
+
+            gameObject.transform.localPosition = Vector3.zero;
+
+            GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 }
