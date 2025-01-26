@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Size : MonoBehaviour
@@ -10,6 +11,9 @@ public class Size : MonoBehaviour
 
     [SerializeField]
     float growMultiplier = 1.1f;
+
+    [SerializeField]
+    float resizeDuration = 1f;
 
     [SerializeField]
     Vector3 minSize = new(0.5f, 0.5f, 0.5f);
@@ -53,23 +57,6 @@ public class Size : MonoBehaviour
         spriteRenderer.transform.localScale = originalSize;
     }
 
-    void Grow()
-    {
-        if (spriteRenderer.transform.localScale.magnitude >= maxSize.magnitude)
-        {
-            IsMaxSize = true;
-            return;
-        }
-
-        if (IsMaxSize)
-        {
-            IsMaxSize = false;
-        }
-
-        spriteRenderer.transform.localScale = spriteRenderer.transform.localScale * growMultiplier;
-
-    }
-
     void Shrink()
     {
         if (spriteRenderer.transform.localScale.magnitude <= minSize.magnitude)
@@ -83,6 +70,43 @@ public class Size : MonoBehaviour
             IsMinSize = false;
         }
 
-        spriteRenderer.transform.localScale = spriteRenderer.transform.localScale * shrinkMultiplier;
+        StartCoroutine(Resize(shrinkMultiplier));
+    }
+
+    void Grow()
+    {
+        if (spriteRenderer.transform.localScale.magnitude >= maxSize.magnitude)
+        {
+            IsMaxSize = true;
+            return;
+        }
+
+        if (IsMaxSize)
+        {
+            IsMaxSize = false;
+        }
+
+        StartCoroutine(Resize(growMultiplier));
+    }
+
+
+    IEnumerator Resize(float multiplier)
+    {
+        float timer = 0f;
+
+        Vector3 startScale = spriteRenderer.transform.localScale;
+        Vector3 endScale = spriteRenderer.transform.localScale * multiplier;
+
+        while (timer < resizeDuration)
+        {
+            timer += Time.deltaTime;
+            float t = timer / resizeDuration;
+
+            spriteRenderer.transform.localScale = Vector3.Lerp(startScale, endScale, t);
+
+            yield return null;
+        }
+
+        spriteRenderer.transform.localScale = endScale;
     }
 }
