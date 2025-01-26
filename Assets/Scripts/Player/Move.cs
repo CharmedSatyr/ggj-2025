@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,10 +33,9 @@ public class Move : MonoBehaviour
 
     void Reset()
     {
-        GetComponent<PlayerInput>().enabled = false;
+        StartCoroutine(TemporarilyDisableControls(3));
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = 0f;
-        GetComponent<PlayerInput>().enabled = true;
     }
 
     // Update is called once per frame
@@ -57,7 +57,16 @@ public class Move : MonoBehaviour
     void HandleVictory()
     {
         Reset();
-        GetComponent<PlayerInput>().enabled = false;
         rb.linearVelocity = new Vector3(0f, victoryRiseSpeed);
+        StartCoroutine(TemporarilyDisableControls(10));
+    }
+
+
+    IEnumerator TemporarilyDisableControls(float seconds)
+    {
+        GetComponent<PlayerInput>().enabled = false;
+        yield return new WaitForSeconds(seconds);
+        GetComponent<PlayerInput>().enabled = true;
+
     }
 }

@@ -10,42 +10,65 @@ public class UIController : MonoBehaviour
     [SerializeField] float textAppearDuration = 3f;
     [SerializeField] float secondsToReset = 10f;
 
-    TextMeshProUGUI youPopped;
+    TextMeshProUGUI text;
     Image background;
 
     void OnEnable()
     {
         Player.Controller.PlayerDeathInstance += ShowDeathUI;
+        Victory.PlayerVictory += ShowVictoryUI;
     }
 
     void OnDisable()
     {
         Player.Controller.PlayerDeathInstance -= ShowDeathUI;
+        Victory.PlayerVictory -= ShowVictoryUI;
     }
 
     void Start()
     {
-        youPopped = GetComponentInChildren<TextMeshProUGUI>();
+        text = GetComponentInChildren<TextMeshProUGUI>();
         background = GetComponentInChildren<Image>();
     }
 
     void ShowDeathUI()
     {
+        text.SetText("You Popped");
+        if (ColorUtility.TryParseHtmlString("#D92828", out Color color))
+        {
+            text.color = color;
+        }
+        text.textWrappingMode = TextWrappingModes.NoWrap;
+
         StartCoroutine(FadeIn());
-        StartCoroutine(Reset());
+        StartCoroutine(ResetWithDelay(secondsToReset));
     }
 
-    IEnumerator Reset()
+    void ShowVictoryUI()
     {
-        yield return new WaitForSeconds(secondsToReset);
+        text.SetText("You honor the diver from whence you came and join the bubbles in the sky");
+        if (ColorUtility.TryParseHtmlString("#C4AE40", out Color color))
+        {
+            text.color = color;
+        }
+        background.color = Color.white;
+        text.textWrappingMode = TextWrappingModes.Normal;
 
-        Color textColor = youPopped.color;
+        StartCoroutine(FadeIn());
+        StartCoroutine(ResetWithDelay(10f));
+    }
+
+    IEnumerator ResetWithDelay(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        Color textColor = text.color;
         Color bgColor = background.color;
 
         textColor.a = 0f;
         bgColor.a = 0f;
 
-        youPopped.color = textColor;
+        text.color = textColor;
         background.color = bgColor;
     }
 
@@ -53,13 +76,13 @@ public class UIController : MonoBehaviour
     {
         float timer = 0f;
 
-        Color textColor = youPopped.color;
+        Color textColor = text.color;
         Color bgColor = background.color;
 
         textColor.a = 0f;
         bgColor.a = 0f;
 
-        youPopped.color = textColor;
+        text.color = textColor;
         background.color = bgColor;
 
         while (timer < backgroundFadeDuration)
@@ -83,7 +106,7 @@ public class UIController : MonoBehaviour
             float textAlpha = timer / textAppearDuration;
             textColor.a = Mathf.Lerp(0f, 1f, textAlpha);
 
-            youPopped.color = textColor;
+            text.color = textColor;
 
             yield return null;
         }
@@ -91,7 +114,7 @@ public class UIController : MonoBehaviour
         textColor.a = 1f;
         bgColor.a = 1f;
 
-        youPopped.color = textColor;
+        text.color = textColor;
         background.color = bgColor;
     }
 }

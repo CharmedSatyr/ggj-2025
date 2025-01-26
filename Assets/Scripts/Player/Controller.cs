@@ -11,25 +11,32 @@ namespace Player
         void OnEnable()
         {
             GameController.HazardCollision += Die;
+            Victory.PlayerVictory += Win;
         }
 
         void OnDisable()
         {
             GameController.HazardCollision -= Die;
+            Victory.PlayerVictory -= Win;
         }
 
         void Die()
         {
             PlayerDeathInstance.Invoke();
 
-            StartCoroutine(Reset());
+            StartCoroutine(ResetWithDelay(2));
 
             GetComponent<SpriteRenderer>().enabled = false;
         }
 
-        IEnumerator Reset()
+        void Win()
         {
-            yield return new WaitForSeconds(2);
+            StartCoroutine(ResetWithDelay(10));
+        }
+
+        IEnumerator ResetWithDelay(int seconds)
+        {
+            yield return new WaitForSeconds(seconds);
 
             gameObject.transform.localPosition = Vector3.zero;
 
