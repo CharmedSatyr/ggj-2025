@@ -23,7 +23,7 @@ public class ProjectileController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Hazard"))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

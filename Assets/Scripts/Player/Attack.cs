@@ -14,6 +14,8 @@ public class Attack : MonoBehaviour
     Size sizeController;
 
     bool canAttack = true;
+
+    [SerializeField]
     float attackCooldown = 0.5f;
 
     public delegate void AttackEvent();
