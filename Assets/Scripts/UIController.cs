@@ -46,7 +46,7 @@ public class UIController : MonoBehaviour
         bgColor.a = 0f;
 
         youPopped.color = textColor;
-        background.color = textColor;
+        background.color = bgColor;
     }
 
     IEnumerator FadeIn()
@@ -60,7 +60,7 @@ public class UIController : MonoBehaviour
         bgColor.a = 0f;
 
         youPopped.color = textColor;
-        background.color = textColor;
+        background.color = bgColor;
 
         while (timer < backgroundFadeDuration)
         {
