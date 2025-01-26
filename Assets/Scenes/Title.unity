@@ -1128,7 +1128,7 @@ GameObject:
   - component: {fileID: 2116561384}
   - component: {fileID: 2116561383}
   m_Layer: 0
-  m_Name: Scene Manager
+  m_Name: Title Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1146,7 +1146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc8a2947dd7ba74db7a8e74bb008f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelName: Demo
+  LevelName: Intro
 --- !u!4 &2116561384
 Transform:
   m_ObjectHideFlags: 0

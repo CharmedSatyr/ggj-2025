@@ -31,7 +31,14 @@ namespace Player
 
         void Win()
         {
-            StartCoroutine(ResetWithDelay(10));
+            StartCoroutine(Wait());
+
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
+        }
+
+        IEnumerator Wait()
+        {
+            yield return new WaitForSeconds(10f);
         }
 
         IEnumerator ResetWithDelay(int seconds)
@@ -42,5 +49,6 @@ namespace Player
 
             GetComponent<SpriteRenderer>().enabled = true;
         }
+
     }
 }
