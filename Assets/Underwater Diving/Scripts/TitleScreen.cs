@@ -29,7 +29,7 @@ public class TitleScreen : MonoBehaviour {
 				titleState = 2;
 
 			} else {
-				SceneManager.LoadScene ("scene-1");
+                UnityEngine.SceneManagement.SceneManager.LoadScene ("scene-1");
 			}
 
 		}

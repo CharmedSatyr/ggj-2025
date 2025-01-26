@@ -24,9 +24,9 @@ namespace Player
         {
             PlayerDeathInstance.Invoke();
 
-            StartCoroutine(ResetWithDelay(2));
-
             GetComponent<SpriteRenderer>().enabled = false;
+
+            StartCoroutine(ResetWithDelay(2));
         }
 
         void Win()

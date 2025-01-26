@@ -38,6 +38,7 @@ public class UIController : MonoBehaviour
         {
             text.color = color;
         }
+        background.color = Color.black;
         text.textWrappingMode = TextWrappingModes.NoWrap;
 
         StartCoroutine(FadeIn());
