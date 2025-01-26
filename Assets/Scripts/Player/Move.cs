@@ -14,6 +14,22 @@ public class Move : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    void OnEnable()
+    {
+        Player.Controller.PlayerDeathInstance += Reset;
+    }
+
+    void OnDisable()
+    {
+        Player.Controller.PlayerDeathInstance -= Reset;
+    }
+
+    void Reset()
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = 0f;
+    }
+
     // Update is called once per frame
     void Update()
     {
