@@ -5,7 +5,6 @@ namespace Player
 {
     public class Controller : MonoBehaviour
     {
-
         public delegate void PlayerDeathEvent();
         public static event PlayerDeathEvent PlayerDeathInstance;
 
