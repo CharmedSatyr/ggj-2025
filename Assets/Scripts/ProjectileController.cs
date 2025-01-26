@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-public class DestroyAfterTimeout : MonoBehaviour
+[RequireComponent(typeof(Collider2D))]
+public class ProjectileController : MonoBehaviour
 {
     [SerializeField]
     float timeout = 3f;
@@ -16,5 +17,13 @@ public class DestroyAfterTimeout : MonoBehaviour
         yield return new WaitForSeconds(timeout);
 
         Destroy(gameObject);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Hazard"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
