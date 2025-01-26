@@ -58804,7 +58804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c09be2fdd88ef434e875ad9cfeaebc22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 2
 --- !u!50 &681082983
 Rigidbody2D:
   serializedVersion: 5
@@ -58845,7 +58845,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 4113250160668174635, guid: a31ec213afded6c4cb64156744a527a8, type: 3}
+  projectileOffsetMult: 1.5
   projectileForce: 200
+  attackCooldown: 0.5
 --- !u!114 &681082985
 MonoBehaviour:
   m_ObjectHideFlags: 0

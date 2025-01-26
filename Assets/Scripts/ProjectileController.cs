@@ -25,5 +25,11 @@ public class ProjectileController : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameController.EmitCollisionEvent(GameController.CollisionType.AirBubble);
+            gameObject.SetActive(false);
+        }
     }
 }

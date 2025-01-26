@@ -7,6 +7,8 @@ public class Attack : MonoBehaviour
     [SerializeField]
     Rigidbody2D projectile;
 
+    [SerializeField] float projectileOffsetMult = 1.5f;
+
     [SerializeField]
     float projectileForce;
 
@@ -42,7 +44,7 @@ public class Attack : MonoBehaviour
     {
         AttackEventInstance?.Invoke();
 
-        Rigidbody2D p = Instantiate(projectile, playerTransform.position, projectile.transform.rotation);
+        Rigidbody2D p = Instantiate(projectile, playerTransform.position + new Vector3(direction.x, direction.y) * projectileOffsetMult, projectile.transform.rotation);
         p.AddForce(direction * projectileForce);
 
         StartCoroutine(Cooldown());
