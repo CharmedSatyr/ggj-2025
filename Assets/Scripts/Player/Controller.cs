@@ -1,20 +1,28 @@
 using UnityEngine;
 
-public class Controller : MonoBehaviour
+namespace Player
 {
-    void OnEnable()
+    public class Controller : MonoBehaviour
     {
-        GameController.HazardCollision += Die;
-    }
 
-    void OnDisable()
-    {
-        GameController.HazardCollision -= Die;
-    }
+        public delegate void PlayerDeathEvent();
+        public static event PlayerDeathEvent PlayerDeathInstance;
 
-    void Die()
-    {
-        print("Player pops!");
-        gameObject.SetActive(false);
+        void OnEnable()
+        {
+            GameController.HazardCollision += Die;
+        }
+
+        void OnDisable()
+        {
+            GameController.HazardCollision -= Die;
+        }
+
+        void Die()
+        {
+            PlayerDeathInstance.Invoke();
+
+            gameObject.SetActive(false);
+        }
     }
 }
