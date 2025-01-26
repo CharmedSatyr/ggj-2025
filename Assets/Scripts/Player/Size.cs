@@ -9,9 +9,16 @@ public class Size : MonoBehaviour
     float shrinkMultiplier = 0.9f;
 
     [SerializeField]
-    Vector3 minSize;
+    float growMultiplier = 1.1f;
+
+    [SerializeField]
+    Vector3 minSize = new(0.5f, 0.5f, 0.5f);
+
+    [SerializeField]
+    Vector3 maxSize = new(3, 3, 3);
 
     public bool IsMinSize { get; private set; } = false;
+    public bool IsMaxSize { get; private set; } = false;
 
     void Awake()
     {
@@ -21,12 +28,31 @@ public class Size : MonoBehaviour
 
     void OnEnable()
     {
+        AirBubbleController.CollectedAirBubble += Grow;
         attackController.AttackEventInstance += Shrink;
     }
 
     void OnDisable()
     {
+        AirBubbleController.CollectedAirBubble -= Grow;
         attackController.AttackEventInstance -= Shrink;
+    }
+
+    void Grow()
+    {
+        if (spriteRenderer.transform.localScale.magnitude >= maxSize.magnitude)
+        {
+            IsMaxSize = true;
+            return;
+        }
+
+        if (IsMaxSize)
+        {
+            IsMaxSize = false;
+        }
+
+        spriteRenderer.transform.localScale = spriteRenderer.transform.localScale * growMultiplier;
+
     }
 
     void Shrink()
