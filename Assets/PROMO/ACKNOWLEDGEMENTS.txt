@@ -1,0 +1,53 @@
+# Third-Party Assets
+
+## Sound Effects
+
+Bubble Pop by freesound_community
+https://pixabay.com/sound-effects/bubble-pop-100784/
+
+bubble sound
+freesound_community from Pixabay
+https://pixabay.com/sound-effects/bubble-sound-43207/
+
+Big Bubble 1
+floraphonic from Pixabay
+https://pixabay.com/sound-effects/big-bubble-1-169075/
+
+Underwater [Loop] AMB
+freesound_community from Pixabay
+https://pixabay.com/sound-effects/underwater-loop-amb-6182/
+
+FART
+freesound_community from Pixabay
+https://pixabay.com/sound-effects/fart-91011/
+
+Large Underwater Explosion
+DavidDumaisAudio from Pixabay
+https://pixabay.com/sound-effects/large-underwater-explosion-190270/
+
+## Music
+
+Awaken
+Onoychenkowmusic from Pixabay
+https://pixabay.com/music/main-title-awaken-136824/
+
+Underwater (For Meditation) by O.B.
+NeoMmusic from Pixabay
+https://pixabay.com/music/meditationspiritual-underwater-for-meditation-by-ob-14278/
+
+## Textures, Sprites, Animations, and Other Assets
+Underwater Diving
+Ansimuz from Unity AssetStore
+https://assetstore.unity.com/packages/2d/environments/underwater-diving-94029
+
+Underwater Fantasy
+Ansimuz from Unity AssetStore
+https://assetstore.unity.com/packages/2d/textures-materials/water/underwater-fantasy-87457
+
+glossy bubbles
+VECTR PHASE from Unity AssetStore
+https://assetstore.unity.com/packages/2d/gui/icons/glossy-bubbles-114601
+
+Free 2D Adventure Beach Pack
+Super Brutal Assets from Unity AssetStore
+https://assetstore.unity.com/packages/2d/environments/free-2d-adventure-beach-background-82090
