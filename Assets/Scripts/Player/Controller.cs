@@ -8,6 +8,16 @@ namespace Player
         public delegate void PlayerDeathEvent();
         public static event PlayerDeathEvent PlayerDeathInstance;
 
+
+        AudioSource audioSource;
+        [SerializeField]
+        AudioClip deathSound;
+
+        void Start()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
         void OnEnable()
         {
             GameController.HazardCollision += Die;
@@ -23,6 +33,8 @@ namespace Player
         void Die()
         {
             PlayerDeathInstance.Invoke();
+
+            audioSource.PlayOneShot(deathSound);
 
             GetComponent<SpriteRenderer>().enabled = false;
 

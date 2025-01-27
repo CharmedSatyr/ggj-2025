@@ -23,8 +23,13 @@ public class Attack : MonoBehaviour
     public delegate void AttackEvent();
     public event AttackEvent AttackEventInstance;
 
+    AudioSource audioSource;
+    [SerializeField]
+    AudioClip bubbleShot;
+
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         playerTransform = GetComponent<Transform>();
         sizeController = GetComponent<Size>();
     }
@@ -43,6 +48,8 @@ public class Attack : MonoBehaviour
     void Execute(Vector2 direction)
     {
         AttackEventInstance?.Invoke();
+
+        audioSource.PlayOneShot(bubbleShot);
 
         Rigidbody2D p = Instantiate(projectile, playerTransform.position + new Vector3(direction.x, direction.y) * projectileOffsetMult, projectile.transform.rotation);
         p.AddForce(direction * projectileForce);
