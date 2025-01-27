@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class IntroManager : MonoBehaviour
 {
+    AudioSource audioSource;
     TextMeshProUGUI text;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField]
+    AudioClip fartNoise;
+    [SerializeField]
+    AudioClip unthinkableNoise;
+
     void Awake()
     {
         text = GetComponentInChildren<TextMeshProUGUI>();
+        audioSource = GameObject.Find("Audio Source").GetComponent<AudioSource>();
     }
 
     void Start()
@@ -25,21 +31,29 @@ public class IntroManager : MonoBehaviour
 
         text.SetText("A diver swam in dangerous waters...\n\nThe unthinkable happened.");
 
+        yield return new WaitForSeconds(2);
+
+        audioSource.PlayOneShot(unthinkableNoise);
+
         yield return new WaitForSeconds(3);
 
         text.SetText("As their last act, the diver made a solitary sound.");
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
 
-        text.SetText("As their last act, the diver made a solitary sound.\n\nYou are the resulting bubble.");
-
-        yield return new WaitForSeconds(3);
-
-        text.SetText("Find your way to freedom.");
+        audioSource.PlayOneShot(fartNoise);
 
         yield return new WaitForSeconds(3);
 
-        text.SetText("Find your way to freedom.\n\nIt's probably what the diver would have wanted.");
+        text.SetText("As their last act, the diver made a solitary sound.\n\nYou are a resulting bubble.");
+
+        yield return new WaitForSeconds(3);
+
+        text.SetText("Find your way to the surface.");
+
+        yield return new WaitForSeconds(3);
+
+        text.SetText("Find your way to the surface.\n\nIt's probably what the diver would have wanted.");
 
         yield return new WaitForSeconds(5);
 
